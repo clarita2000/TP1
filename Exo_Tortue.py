@@ -41,3 +41,50 @@ print(ma_tortue.localise())       # (5,0)
 ma_tortue.avance()
 print(ma_tortue.localise())
 
+
+#!/usr/bin/env python3
+
+#main tortue
+
+from Tortue import Tortue
+from Course import Course
+
+la_course = Course()
+for t in range(5):
+  la_course.enregistre(Tortue(f"tortue{t}",0,0))
+la_course.run()
+import random
+
+class Tortue:
+
+    def __init__(self,name,x,y,vmax=random.randint(2,8)):
+        self.x = x
+        self.y = y
+        self.name = name
+        self.vmax = vmax
+
+    def localise(self):
+        return (self.name, self.x, self.y)
+
+    def avance(self):
+        self.x += random.randint(0,self.vmax)
+
+#course
+from Tortue import Tortue
+
+class Course():
+    def __init__(self):
+        self.liste = []
+
+
+    def enregistre(self,T):
+        self.liste.append(T)
+
+    def run(self):
+        print("1,2,3... Go!")
+        for step in range(100):
+          print(f"{step=}")
+          for t in self.liste:
+            t.avance()
+            print(t.localise())
+
